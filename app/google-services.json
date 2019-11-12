@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "221548740908",
+    "firebase_url": "https://agent-efe42.firebaseio.com",
+    "project_id": "agent-efe42",
+    "storage_bucket": "agent-efe42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221548740908:android:948c7a99e065876d",
+        "android_client_info": {
+          "package_name": "com.example.samuelhimself.agent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221548740908-qk8ddu8dis9vu7igkgqfg1ruj7e910f2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.samuelhimself.agent",
+            "certificate_hash": "74d9790e9d0c01cf1d50936686c94740dbb8ebd7"
+          }
+        },
+        {
+          "client_id": "221548740908-pk6u3dj5b2c9k287dmmgumqofbnvmljr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAompwPiGtgXEWujm-thVBzm_1K07Fgm-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221548740908-pk6u3dj5b2c9k287dmmgumqofbnvmljr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
