@@ -3,7 +3,10 @@
     package="com.example.samuelhimself.agent">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +15,6 @@
         android:roundIcon="@drawable/digital_bikes2"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
@@ -71,7 +73,8 @@
         <activity
             android:name=".messages"
             android:label="My Messages" />
-        <activity android:name=".textrecognition"></activity>
+        <activity android:name=".textrecognition" />
+        <activity android:name=".digitalTime"></activity>
     </application>
 
 </manifest>
