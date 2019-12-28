@@ -4,8 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,10 +18,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,10 +67,23 @@ public class bikeBalancing extends AppCompatActivity {
     String message;
     int success=0;
 
+    Button camerabtn, detect;
+    int determinant = 0;
+    ImageView imageread;
+    Bitmap bitmapimg;
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bike_balancing);
+//        STATUS BAR
+        if(Build.VERSION.SDK_INT >=21){
+            Window window=this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.darkdarkTurq));
+        }
 
         progBar= (ProgressBar)findViewById(R.id.progressBar44);
         pogless();
@@ -67,9 +95,63 @@ public class bikeBalancing extends AppCompatActivity {
         efrom=(EditText)findViewById(R.id.editTextfrom);
         eto=(EditText)findViewById(R.id.editTextto);
         eby=(EditText)findViewById(R.id.editTextby);
-        ebikeno=(EditText)findViewById(R.id.editTextbikebal);
+//        ebikeno=findViewById(R.id.editTextbikebal);
 
+
+        textView=findViewById(R.id.editTextbikebal);
+//        detect=findViewById(R.id.detect);
+//        detect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                detectImg();
+//            }
+//        });
+        imageread = (ImageView) findViewById(R.id.balanceimage);
+        camerabtn = findViewById(R.id.balancecamera);
+        camerabtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    determinant++;
+//                    camerabtn.setText("Give Bike");
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        bitmapimg = (Bitmap) data.getExtras().get("data");
+        imageread.setImageBitmap(bitmapimg);
+        detectImg();
+    }
+
+    private void detectImg() {
+        Log.w("txt", "detecting");
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
+        FirebaseVisionTextRecognizer textRecognizer =
+                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+            @Override
+            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                Log.w("txt", "success");
+                processTxt(firebaseVisionText);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("txt", "failed");
+
+            }
+        });
+    }
+    private void processTxt (FirebaseVisionText text){
+        Log.w("txt", text.getText());
+        textView.setText(text.getText());
+//        runSystems(text.getText());
+    }
+
 
     public void pogless() {
 
@@ -120,7 +202,7 @@ public class bikeBalancing extends AppCompatActivity {
         String bfrom =efrom.getText().toString();
         String bto =eto.getText().toString();
         String bby =eby.getText().toString();
-        String bbikeno =ebikeno.getText().toString();
+        String bbikeno =textView.getText().toString();
 
 
         //Checking if all fields have been filled

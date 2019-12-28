@@ -4,8 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,10 +18,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,10 +75,25 @@ public class returnBike extends AppCompatActivity {
     Boolean loginStatus;
 
     TextView tname,tphone,tmail,tresi,tdur,tpaym,tgear,tcash,treg;
+
+    Button camerabtn, detect;
+    int determinant = 0;
+    ImageView imageread;
+    Bitmap bitmapimg;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_return_bike);
+
+//        STATUS BAR
+        if(Build.VERSION.SDK_INT >=21){
+            Window window=this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.darkdarkTurq));
+        }
+
 
         progBar= (ProgressBar)findViewById(R.id.progressBar33);
         pogless();
@@ -108,7 +138,62 @@ public class returnBike extends AppCompatActivity {
         tresi.setText(userresidence);
         tgear.setText(userbikeno);
 
+
+
+        textView=findViewById(R.id.editTextbikeR);
+//        detect=findViewById(R.id.detect);
+//        detect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                detectImg();
+//            }
+//        });
+        imageread = (ImageView) findViewById(R.id.returnimage);
+        camerabtn = findViewById(R.id.camerareturn);
+        camerabtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    determinant++;
+//                    camerabtn.setText("Give Bike");
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        bitmapimg = (Bitmap) data.getExtras().get("data");
+        imageread.setImageBitmap(bitmapimg);
+        detectImg();
+    }
+
+    private void detectImg() {
+        Log.w("txt", "detecting");
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
+        FirebaseVisionTextRecognizer textRecognizer =
+                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+            @Override
+            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                Log.w("txt", "success");
+                processTxt(firebaseVisionText);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w("txt", "failed");
+
+            }
+        });
+    }
+    private void processTxt (FirebaseVisionText text){
+        Log.w("txt", text.getText());
+        textView.setText(text.getText());
+//        runSystems(text.getText());
+    }
+
 
     public void pogless() {
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     String pkafrica,pkcedat,pkcomplex,pkfema,pklibrary,pklivingstone,pklumumba,pkmaingate,pkmarystuart,pkmitchell,pknkrumah,pkuh;
 
-    String timez,day,msg;
+    String timez,day,msg,agentee;
     int suckie;
 
     @Override
@@ -81,6 +84,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        STATUS BAR
+        if(Build.VERSION.SDK_INT >=21){
+            Window window=this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.darkdarkTurq));
+        }
+
+
+
+        prefs=getSharedPreferences(prefName,MODE_PRIVATE);
+        agentee =prefs.getString(AGENT_CODE_KEY,"");
 
 //*************time*************8
         Calendar date= Calendar.getInstance();
@@ -186,6 +201,12 @@ public class MainActivity extends AppCompatActivity {
         pb.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundGetreq(this).execute(Acode);
+    }
+
+    public void digitaltea(View v){
+        new MainActivity.backgroundDTreq(this).execute();
+//        Intent int1 =new Intent(getApplicationContext(),digitalTime.class);
+//                startActivity(int1);
     }
 
     class backgroundGetreq extends AsyncTask<String, Void,String> {
@@ -374,6 +395,8 @@ public class MainActivity extends AppCompatActivity {
 
             ProgressBar pb =findViewById(R.id.progressBar11);
             pb.setVisibility(ProgressBar.INVISIBLE);
+
+            Log.d("$$",s);
 
             Log.d("JSON Exception","IN MAIN ACTIVITY POST EXEC METHOD");
 
@@ -1012,10 +1035,108 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mymessages(View v){
-                Intent int1 =new Intent(getApplicationContext(),messages.class);
+                Intent int1 =new Intent(getApplicationContext(),mapParkings.class);
                 startActivity(int1);
     }
+//.1
 
+    class backgroundDTreq extends AsyncTask<String, Void,String> {
+
+        AlertDialog dialog;
+        Context context;
+        public backgroundDTreq(Context context){
+            this.context=context;
+        }
+
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            json = s.toString();
+
+//            Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            Log.e("dtdt", s);
+
+            try {
+                jObj = new JSONObject(json);
+                int  success = jObj.getInt("success");
+
+                switch (success){
+                    case 0:
+                        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+                        break;
+                    case 1:
+                        Intent int1 =new Intent(getApplicationContext(),digitalTime.class);
+                        int1.putExtra("info",s);
+                        startActivity(int1);
+                        break;
+                }
+            } catch (JSONException e) {
+                Log.e("JSON Parser", "Error creating the json object " + e.toString());
+            }
+
+            ProgressBar pb =findViewById(R.id.progressBar11);
+            pb.setVisibility(ProgressBar.INVISIBLE);
+//
+//            Intent int2=new Intent(MainActivity.this,confirmRequests.class);
+//            int2.putExtra("getInfo",s);
+//            startActivity(int2);
+
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result="";
+
+//            String acode=voids[0];
+            String connstr="http://stardigitalbikes.com/digital_time_get.php";
+
+            try {
+                URL url =new URL(connstr);
+                HttpURLConnection http =(HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+
+                OutputStream ops =http.getOutputStream();
+                BufferedWriter writer =new BufferedWriter(new OutputStreamWriter(ops,"UTF-8"));
+                String data = URLEncoder.encode("agent_code","UTF-8")+"="+URLEncoder.encode(agentee,"UTF-8");
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+                Log.d("JSON Exception","DONE SENDING");
+
+                InputStream ips =http.getInputStream();
+                BufferedReader reader=new BufferedReader(new InputStreamReader(ips,"ISO-8859-1"));
+                String line ="";
+                while ((line=reader.readLine()) !=null){
+                    result +=line;
+
+                }
+//#######INTRODICING THE READING OOF THE RETURNED JSON
+                ips.close();
+                reader.close();
+                json = result.toString();
+
+                http.disconnect();
+                return result;
+
+            } catch (MalformedURLException e) {
+                Log.d("JSON Exception",e.toString());
+                result =e.getMessage();
+            } catch (ProtocolException e) {
+                Log.d("JSON Exception",e.toString());
+                result =e.getMessage();
+            } catch (IOException e) {
+                Log.d("JSON Exception",e.toString());
+                result =e.getMessage();
+            }
+            return result;
+        }
+    }
 
 
 }

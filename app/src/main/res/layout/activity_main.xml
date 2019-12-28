@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    tools:context=".MainActivity">
 
-    <include layout="@layout/apptoolbar"
-        android:id="@+id/maintool"/>
+    <include
+        android:id="@+id/maintool"
+        layout="@layout/apptoolbar" />
 
     <TextView
         android:id="@+id/reminder1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/round9"
         android:padding="5dp"
         android:textColor="#ffffff"
@@ -30,34 +31,54 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="397dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginEnd="8dp"
         android:background="#ffffff"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:layout_gravity="center"
             android:background="#ffffff"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/card3"
+                android:id="@+id/carddd3"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginBottom="7dp"
+                android:background="#ffffff"
+                app:cardCornerRadius="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/carddsd3"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -67,27 +88,35 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/bikebalancing1"
+                        android:id="@+id/textrec"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="#ffffff"
+                        android:background="#fffffF"
                         android:fontFamily="casual"
-                        android:text="@string/bikeBalancing"
+                        android:text="text rec"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
-
             </android.support.v7.widget.CardView>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cdsdard3"
+                android:id="@+id/carsdsdddsd3"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -107,122 +136,7 @@
                         android:text="fines"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="2dp">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/carddd3"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="10dp"
-                android:background="#ffffff"
-                app:cardCornerRadius="7dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/bicyclesIn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:fontFamily="casual"
-                        android:gravity="center"
-                        android:onClick="getBikesIn"
-                        android:text="@string/bicyclesin"
-                        android:textAllCaps="false"
-                        android:textSize="7pt" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/carddsd3"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="10dp"
-                android:background="#ffffff"
-                app:cardCornerRadius="7dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-
-                        android:id="@+id/bicyclesOut"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:fontFamily="casual"
-                        android:gravity="center"
-                        android:onClick="myBikesout"
-                        android:text="@string/mybicyclesout"
-                        android:textAllCaps="false"
-                        android:textSize="7pt"
-
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="2dp">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/carsdsdddsd3"
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="10dp"
-                android:background="#ffffff"
-                app:cardCornerRadius="7dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-
-                    <Button
-                        android:id="@+id/confirm1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:fontFamily="casual"
-                        android:onClick="getRequests"
-                        android:text="@string/confirmreq"
-                        android:textAllCaps="false"
-                        android:textSize="7pt" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -230,8 +144,8 @@
                 android:id="@+id/carddssfsfssd3"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -241,15 +155,13 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/returnReq"
+                        android:id="@+id/bikebalancing1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:fontFamily="casual"
-                        android:gravity="center"
-                        android:onClick="getReturnRequests"
-                        android:text="@string/returnbike"
+                        android:text="@string/bikeBalancing"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
@@ -269,8 +181,37 @@
                 android:id="@+id/cardsdsasdadsd3"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
+                android:background="#ffffff"
+                app:cardCornerRadius="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bicyclesOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#ffffff"
+                        android:fontFamily="casual"
+                        android:gravity="center"
+                        android:onClick="myBikesout"
+                        android:text="@string/bikesout"
+                        android:textAllCaps="false"
+                        android:textSize="7pt" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardsdytsasdadsd3"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -293,12 +234,22 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <android.support.v7.widget.CardView
-                android:id="@+id/cardsdytsasdadsd3"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -321,22 +272,11 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="#ffffff"
-            android:gravity="center"
-            android:orientation="horizontal">
-
             <android.support.v7.widget.CardView
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="7dp"
                 android:background="#ffffff"
                 app:cardCornerRadius="7dp">
 
@@ -346,39 +286,13 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/bvs"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#fffffF"
                         android:fontFamily="casual"
-                        android:text="@string/bvs"
-                        android:textAllCaps="false"
-                        android:textSize="7pt" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="130dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginRight="10dp"
-                android:background="#ffffff"
-                app:cardCornerRadius="7dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/textrec"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="#fffffF"
-                        android:fontFamily="casual"
-                        android:text="text rec"
+                        android:onClick="digitaltea"
+                        android:text="@string/digitalTime"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
@@ -412,7 +326,62 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.573" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
 
+
+        <Button
+            android:id="@+id/bicyclesIn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:onClick="getBikesIn"
+            android:text="@string/bicyclesin"
+            android:textAllCaps="false"
+            android:textSize="7pt" />
+
+        <Button
+            android:id="@+id/confirm1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:fontFamily="casual"
+            android:onClick="getRequests"
+            android:text="@string/req"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="7pt" />
+
+
+        <Button
+            android:id="@+id/returnReq"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:onClick="getReturnRequests"
+            android:text="@string/ret"
+            android:textAllCaps="false"
+            android:textSize="7pt" />
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
