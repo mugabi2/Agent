@@ -133,7 +133,7 @@
                         android:background="#ffffff"
                         android:fontFamily="casual"
                         android:onClick="getfineRequests"
-                        android:text="fines"
+                        android:text="Handover"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
 
@@ -155,13 +155,13 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/bikebalancing1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#ffffff"
                         android:fontFamily="casual"
-                        android:text="@string/bikeBalancing"
+                        android:onClick="getfineRequests"
+                        android:text="Fines"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
@@ -221,14 +221,13 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/revenue1"
+                        android:id="@+id/bikebalancing1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#fffffF"
                         android:fontFamily="casual"
-                        android:onClick="myRevenue"
-                        android:text="@string/revenue"
+                        android:text="@string/bikeBalancing"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
@@ -265,8 +264,8 @@
                         android:layout_weight="1"
                         android:background="#fffffF"
                         android:fontFamily="casual"
-                        android:onClick="mymessages"
-                        android:text="Messages"
+                        android:onClick="getBikesIn"
+                        android:text="Bicycles in"
                         android:textAllCaps="false"
                         android:textSize="7pt" />
                 </LinearLayout>
@@ -349,8 +348,8 @@
             android:background="#ffffff"
             android:fontFamily="casual"
             android:gravity="center"
-            android:onClick="getBikesIn"
-            android:text="@string/bicyclesin"
+            android:onClick="myRevenue"
+            android:text="@string/revenue"
             android:textAllCaps="false"
             android:textSize="7pt" />
 

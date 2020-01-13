@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
+    <EditText
         android:id="@+id/editTextbikeR"
         android:layout_width="200dp"
         android:layout_height="wrap_content"

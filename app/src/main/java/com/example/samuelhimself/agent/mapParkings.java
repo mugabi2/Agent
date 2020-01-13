@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
 
 public class mapParkings extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -59,20 +59,20 @@ public class mapParkings extends AppCompatActivity {
         note.put(KEY, title);
 //        note.put(KEY_DESCRIPTION, description);
 
-        db.collection("BVSMUK").document("population").set(note)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(mapParkings.this, "Note saved", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(mapParkings.this, "Error!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
-                    }
-                });
+//        db.collection("BVSMUK").document("population").set(note)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(mapParkings.this, "Note saved", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(mapParkings.this, "Error!", Toast.LENGTH_SHORT).show();
+//                        Log.d(TAG, e.toString());
+//                    }
+//                });
     }
 
 }

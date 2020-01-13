@@ -131,7 +131,7 @@ public class finalReg extends AppCompatActivity implements View.OnClickListener{
             useremailadd=user.getString("EM");
             userresidence=user.getString("RD");
             userduration=user.getString("DR");
-            usercash=user.getString("CS");
+//            usercash=user.getString("CS");
 //            usergear=user.getString("GR");
             userpaymeth=user.getString("PM");
             userreg=user.getString("RG");

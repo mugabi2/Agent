@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+//import com.google.firebase.ml.vision.FirebaseVision;
+//import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+//import com.google.firebase.ml.vision.text.FirebaseVisionText;
+//import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 public class textrecognition extends AppCompatActivity {
 
@@ -79,27 +79,27 @@ public class textrecognition extends AppCompatActivity {
 
     private void detectImg() {
         Log.w("txt", "detecting");
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
-        FirebaseVisionTextRecognizer textRecognizer =
-                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-            @Override
-            public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                Log.w("txt", "success");
-                processTxt(firebaseVisionText);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("txt", "failed");
-
-            }
-        });
+//        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
+//        FirebaseVisionTextRecognizer textRecognizer =
+//                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+//        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+//            @Override
+//            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+//                Log.w("txt", "success");
+//                processTxt(firebaseVisionText);
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.w("txt", "failed");
+//
+//            }
+//        });
     }
-    private void processTxt (FirebaseVisionText text){
-        Log.w("txt", text.getText());
-        textView.setText(text.getText());
-//        runSystems(text.getText());
-    }
+//    private void processTxt (FirebaseVisionText text){
+//        Log.w("txt", text.getText());
+//        textView.setText(text.getText());
+////        runSystems(text.getText());
+//    }
 
 }

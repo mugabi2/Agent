@@ -197,8 +197,7 @@ public class MainActivity extends AppCompatActivity {
         prefs=getSharedPreferences(prefName,MODE_PRIVATE);
         String Acode =prefs.getString(AGENT_CODE_KEY,"");
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
+        progBar.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundGetreq(this).execute(Acode);
     }
@@ -260,8 +259,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("JSON Parser", "Error creating the json object " + e.toString());
             }
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
 //
 //            Intent int2=new Intent(MainActivity.this,confirmRequests.class);
 //            int2.putExtra("getInfo",s);
@@ -366,8 +364,7 @@ public class MainActivity extends AppCompatActivity {
         prefs=getSharedPreferences(prefName,MODE_PRIVATE);
         String Agcode =prefs.getString(AGENT_CODE_KEY,"");
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
+        progBar.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundreturnReq(this).execute(Agcode);
     }
@@ -393,8 +390,7 @@ public class MainActivity extends AppCompatActivity {
 //            dialog.show();
             Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
 
             Log.d("$$",s);
 
@@ -537,10 +533,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void getBikesIn(View v){
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
 
-        new MainActivity.backgroundBikesIn(this).execute();
+        Intent int2=new Intent(MainActivity.this,bicyclesIn.class);
+        startActivity(int2);
+//        new MainActivity.backgroundBikesIn(this).execute();
     }
 
     class backgroundBikesIn extends AsyncTask<String, Void,String> {
@@ -563,11 +559,10 @@ public class MainActivity extends AppCompatActivity {
 //            dialog.show();
             Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
-            Intent int2=new Intent(MainActivity.this,bicyclesIn.class);
-            int2.putExtra("bikesin",s);
-            startActivity(int2);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
+//            Intent int2=new Intent(MainActivity.this,bicyclesIn.class);
+//            int2.putExtra("bikesin",s);
+//            startActivity(int2);
 
         }
 
@@ -668,8 +663,7 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences(prefName, MODE_PRIVATE);
         String codeyo=prefs.getString(AGENT_CODE_KEY,"");
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
+        progBar.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundRevenue(this).execute(codeyo);
     }
@@ -694,8 +688,7 @@ public class MainActivity extends AppCompatActivity {
 //            dialog.show();
             Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
 
             Intent int2=new Intent(MainActivity.this,revenue.class);
             int2.putExtra("rev",s);
@@ -785,8 +778,7 @@ public class MainActivity extends AppCompatActivity {
         prefs = getSharedPreferences(prefName, MODE_PRIVATE);
         String codeyo=prefs.getString(AGENT_CODE_KEY,"");
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
+        progBar.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundbikesOut(this).execute(codeyo);
     }
@@ -811,8 +803,7 @@ public class MainActivity extends AppCompatActivity {
 //            dialog.show();
             Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
             Log.d("JSONStatus", s);
             Intent int3=new Intent(MainActivity.this,bicyclesOut.class);
             int3.putExtra("bikesout",s);
@@ -901,8 +892,7 @@ public class MainActivity extends AppCompatActivity {
         prefs=getSharedPreferences(prefName,MODE_PRIVATE);
         String Agcode =prefs.getString(AGENT_CODE_KEY,"");
 
-        ProgressBar pb =findViewById(R.id.progressBar11);
-        pb.setVisibility(ProgressBar.VISIBLE);
+        progBar.setVisibility(ProgressBar.VISIBLE);
 
         new MainActivity.backgroundfineReq(this).execute(Agcode);
     }
@@ -925,8 +915,7 @@ public class MainActivity extends AppCompatActivity {
 //            dialog.show();
             Toast.makeText(getApplicationContext(),s,Toast.LENGTH_SHORT).show();
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
 
             Log.d("JSON Exception","IN MAIN ACTIVITY POST EXEC METHOD");
 
@@ -1075,8 +1064,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("JSON Parser", "Error creating the json object " + e.toString());
             }
 
-            ProgressBar pb =findViewById(R.id.progressBar11);
-            pb.setVisibility(ProgressBar.INVISIBLE);
+            progBar.setVisibility(ProgressBar.INVISIBLE);
 //
 //            Intent int2=new Intent(MainActivity.this,confirmRequests.class);
 //            int2.putExtra("getInfo",s);

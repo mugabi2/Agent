@@ -29,10 +29,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+//import com.google.firebase.ml.vision.FirebaseVision;
+//import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+//import com.google.firebase.ml.vision.text.FirebaseVisionText;
+//import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,7 +71,7 @@ public class returnBike extends AppCompatActivity {
     String meso;
     String timez;
 
-    String usersurname,userfirstname,userphonenumb,useremailadd,userresidence,userbikeno,usercash,userduration,userpaymeth,message;
+    String usersurname,userfirstname,userphonenumb,useremailadd,userresidence,userbikeno,usertimereturned,usercash,userduration,userpaymeth,message;
     Boolean loginStatus;
 
     TextView tname,tphone,tmail,tresi,tdur,tpaym,tgear,tcash,treg;
@@ -80,11 +80,18 @@ public class returnBike extends AppCompatActivity {
     int determinant = 0;
     ImageView imageread;
     Bitmap bitmapimg;
-    TextView textView;
+    EditText textView;
+    String day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_return_bike);
+
+
+        Calendar date= Calendar.getInstance();
+        SimpleDateFormat sdf= new SimpleDateFormat("dd-MM-yyyy");
+        day=sdf.format(date.getTime());
 
 //        STATUS BAR
         if(Build.VERSION.SDK_INT >=21){
@@ -117,6 +124,7 @@ public class returnBike extends AppCompatActivity {
             useremailadd=user.getString("EM");
             userresidence=user.getString("RD");
             userbikeno=user.getString("BN");
+            usertimereturned=user.getString("TR");
 
 //            TextView Treq=(TextView)findViewById(R.id.textViewReturn);
 //            Treq.append(usersurname+" "+userfirstname+" "+userphonenumb+" "+useremailadd+" "+userresidence+" "+userbikeno);
@@ -170,29 +178,29 @@ public class returnBike extends AppCompatActivity {
     }
 
     private void detectImg() {
-        Log.w("txt", "detecting");
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
-        FirebaseVisionTextRecognizer textRecognizer =
-                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-            @Override
-            public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                Log.w("txt", "success");
-                processTxt(firebaseVisionText);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("txt", "failed");
-
-            }
-        });
+//        Log.w("txt", "detecting");
+//        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapimg);
+//        FirebaseVisionTextRecognizer textRecognizer =
+//                FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+//        textRecognizer.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+//            @Override
+//            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+//                Log.w("txt", "success");
+//                processTxt(firebaseVisionText);
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.w("txt", "failed");
+//
+//            }
+//        });
     }
-    private void processTxt (FirebaseVisionText text){
-        Log.w("txt", text.getText());
-        textView.setText(text.getText());
-//        runSystems(text.getText());
-    }
+//    private void processTxt (FirebaseVisionText text){
+//        Log.w("txt", text.getText());
+//        textView.setText(text.getText());
+////        runSystems(text.getText());
+//    }
 
 
     public void pogless() {
@@ -323,7 +331,8 @@ public class returnBike extends AppCompatActivity {
                 String data = URLEncoder.encode("agent_code","UTF-8")+"="+URLEncoder.encode(AgCode,"UTF-8")
                         +"&&"+ URLEncoder.encode("bikenumber","UTF-8")+"="+URLEncoder.encode(Bike,"UTF-8")
                         +"&&"+ URLEncoder.encode("phonenumber","UTF-8")+"="+URLEncoder.encode(userphonenumb,"UTF-8")
-                        +"&&"+ URLEncoder.encode("timenow","UTF-8")+"="+URLEncoder.encode(timez,"UTF-8")
+                        +"&&"+ URLEncoder.encode("timereturned","UTF-8")+"="+URLEncoder.encode(usertimereturned,"UTF-8")
+                        +"&&"+ URLEncoder.encode("day","UTF-8")+"="+URLEncoder.encode(day,"UTF-8")
                         +"&&"+ URLEncoder.encode("serverKey","UTF-8")+"="+URLEncoder.encode(serverKey,"UTF-8");
                 writer.write(data);
                 writer.flush();

@@ -47,7 +47,7 @@ public class SPLASH1 extends AppCompatActivity {
             public void run() {
 
                 if (prefl.getBoolean(LOGIN_STATUS_KEY,false)){
-                    Intent intent= new Intent(SPLASH1.this,MainActivity.class);
+                    Intent intent= new Intent(SPLASH1.this,bicyclesIn.class);//mainactibity
                     startActivity(intent);
                 finish();}
                 else{
@@ -56,7 +56,7 @@ public class SPLASH1 extends AppCompatActivity {
                     finish();
                 }
             }
-        }, 3000);
+        }, 100);
 
         Toast.makeText(getApplicationContext(), dayo, Toast.LENGTH_LONG).show();
 

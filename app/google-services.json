@@ -82,6 +82,43 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:182704430023:android:8e3d4ceb7429a6dae7d7e2",
+        "android_client_info": {
+          "package_name": "com.stardigitalbikes.digitalbikes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182704430023-l4d25qs9loks372ied9rjbn0b4t46cvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stardigitalbikes.digitalbikes",
+            "certificate_hash": "74d9790e9d0c01cf1d50936686c94740dbb8ebd7"
+          }
+        },
+        {
+          "client_id": "182704430023-u1h7cib26do4801ak19qrv66g40shtqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdHaT0Ek0pLxtoH_w9A5L-2qRFMWvfoQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182704430023-u1h7cib26do4801ak19qrv66g40shtqh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:182704430023:android:117390d7905c062b",
         "android_client_info": {
           "package_name": "com.stardigitalbikes.samuelhimself.bible1"
